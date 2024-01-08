@@ -1,0 +1,5 @@
+.content {
+    background-color: #f8f9fa;
+    position: relative;
+    min-height: 100vh; /* Asegura que el contenido ocupe al menos el 100% del alto de la pantalla */
+  }

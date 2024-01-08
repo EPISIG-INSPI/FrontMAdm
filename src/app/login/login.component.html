@@ -1,0 +1,40 @@
+<div class="body">
+  <div class="container login-container col-md-3">
+    <img src="./assets/Imagenes/logo-episig-01-300x105.png" alt="Logo" class="mb-4">
+    <div class="login" *ngIf="!olvidarContra">
+      <h2 class="mb-6">Iniciar Sesión</h2>
+
+      <form [formGroup]="formLogin">
+        <div class="pb-3">
+          <input type="email" class="form-control" formControlName="email" [ngClass]="validarEstado('email',formLogin)" placeholder="Correo electrónico">
+        </div>
+
+        <div class="pb-3">
+          <div class="input-group">
+            <input id="passwordInput" type="password" class="form-control" [ngClass]="validarEstado('pass',formLogin)" formControlName="pass" placeholder="Contraseña">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword" (click)="togglePassword()">
+                <i class="fa fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2" *ngIf="showErrorMessage">
+          <p class="text-danger">Campo obligatorio*</p>
+        </div>
+
+        <button type="button" class="btn btn-dark btn-lg btn-block" (click)="login()">Iniciar Sesión</button>
+      </form>
+
+      <div class="mt-5">
+        <button class="small text-muted" (click)="olvidarContra=!olvidarContra">¿Olvidaste tu contraseña?</button>
+      </div>
+    </div>
+    <div class="olvidarContra" *ngIf="olvidarContra">
+      <app-olvidar-contra [email]="formLogin.value['email']" (onEnviar)="olvidarContra=!olvidarContra"></app-olvidar-contra>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,72 @@
+<div class="row h-100">
+  <div class="col-md-2 p-0">
+    <nav id="sidebar">
+      <div class="text-center">
+        <img src="./assets/Imagenes/logo.blanco.fw.png" alt="Logo" class="mb-4">
+      </div>
+      <br>
+
+      <a routerLink='inicio' routerLinkActive='active'  class="list-group-item list-mio" data-bs-toggle="collapse">
+       <i class="fas fa-home rotate" style="margin-right: 15px;"></i>Inicio 
+      </a>
+       <!-- Contenido del desplegable "Personal" -->
+      <a href="#personal" class="list-group-item list-mio" data-bs-toggle="collapse">
+        <i class="fas fa-chevron-circle-right rotate" style="margin-right: 15px;"></i>Personal
+      </a>
+      <div class="list-group collapse" id="personal" data-bs-parent="#sidebar">
+        <a routerLink='personal' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fas fa-user rotate" style="margin-right: 15px;"></i>INSPI PERSONAL</a>
+      </div>
+      <!-- Contenido del desplegable "Publicaciones" -->
+        <a href='#publicaciones' class="list-group-item list-mio" data-bs-toggle="collapse">
+          <i class="fas fa-chevron-circle-right rotate" style="margin-right: 15px;"></i>Publicaciones
+        </a>
+        <div class="list-group collapse" id="publicaciones" data-bs-parent="#sidebar">
+        <a routerLink='publicaciones' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-inbox" style="margin-right: 15px;"></i>Matriz general </a>
+        </div>
+        <div class="list-group collapse" id="publicaciones" data-bs-parent="#sidebar">
+          <a routerLink='publicaciones' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-flask" style="margin-right: 15px;"></i>Articulos</a>
+        </div>
+        <div class="list-group collapse" id="publicaciones" data-bs-parent="#sidebar">
+          <a routerLink='publicaciones' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-file" style="margin-right: 15px;"></i>Documentos</a>
+        </div>
+        <div class="list-group collapse" id="publicaciones" data-bs-parent="#sidebar">
+          <a routerLink='publicaciones' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-bars" style="margin-right: 15px;"></i>Reportes</a>
+        </div>
+         <!-- Contenido del desplegable "Documentacion" -->
+         <a href="#documentacion" class="list-group-item list-mio" data-bs-toggle="collapse">
+          <i class="fas fa-chevron-circle-right rotate" style="margin-right: 15px;"></i>Documentacion
+        </a>
+        <div class="list-group collapse" id="documentacion" data-bs-parent="#sidebar">
+        <a routerLink='documentacion' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-file-powerpoint" style="margin-right: 15px;"></i>Presentaciones</a>
+        </div>
+        <div class="list-group collapse" id="documentacion" data-bs-parent="#sidebar">
+          <a routerLink='documentacion' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-house" style="margin-right: 15px;"></i>Bienes</a>
+        </div>
+        <div class="list-group collapse" id="documentacion" data-bs-parent="#sidebar">
+          <a routerLink='documentacion' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-file" style="margin-right: 15px;"></i>Documentos</a>
+        </div>
+        <div class="list-group collapse" id="documentacion" data-bs-parent="#sidebar">
+          <a routerLink='documentacion' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-layer-group" style="margin-right: 15px;"></i>Formatos</a>
+        </div>
+        <div class="list-group collapse" id="documentacion" data-bs-parent="#sidebar">
+          <a routerLink='documentacion' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-clipboard" style="margin-right: 15px;"></i>Proformas</a>
+        </div>
+         <!-- Contenido del desplegable "Proyectos" -->
+         <a href="#proyectos" class="list-group-item list-mio" data-bs-toggle="collapse">
+          <i class="fas fa-chevron-circle-right rotate" style="margin-right: 15px;"></i>Proyectos
+        </a>
+        <div class="list-group collapse" id="proyectos" data-bs-parent="#sidebar">
+        <a routerLink='proyectos' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-network-wired" style="margin-right: 15px;"></i>Matriz general</a>
+        </div>
+        <div class="list-group collapse" id="proyectos" data-bs-parent="#sidebar">
+          <a routerLink='proyectos' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-file" style="margin-right: 15px;"></i>Documentos</a>
+        </div>
+        <div class="list-group collapse" id="proyectos" data-bs-parent="#sidebar">
+          <a routerLink='proyectos' routerLinkActive='active' class="list-group-item list-mio-item"><i class="fa-solid fa-bars" style="margin-right: 15px;"></i>Reportes</a>
+        </div>
+    </nav>
+  </div>
+  <div id="route" class="col-md-10 p-0">
+    <router-outlet></router-outlet>
+  </div>
+</div>

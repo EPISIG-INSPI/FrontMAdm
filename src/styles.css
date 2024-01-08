@@ -1,0 +1,93 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html, body{
+  height: 100%;
+  overflow: hidden;
+}
+main{
+  overflow-y: auto;
+  max-height: 90.5vh;
+}
+router-outlet+::after{
+  overflow-y: auto;
+}
+img{
+  height: auto !important;
+  max-width: 100% !important;
+}
+.list-group{
+  border-radius: 0% !important;
+}
+.list-group-item.active {
+  border: 0 !important;
+}
+.list-group-item-mio {
+  position: relative;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #e9ecef
+ !important;
+  text-decoration: none;
+}
+.list-group-item-mio:hover{
+  color: #e9ecef
+ !important;
+  text-decoration: none !important;
+  background-color: #954f00 !important;
+}
+.list-mio {
+  color: #e9ecef !important;
+  background-color: #333942 !important;
+  border: 0;
+}
+.list-mio:hover {
+  color: #e9ecef !important;
+  text-decoration: none !important;
+}
+.list-mio-item {
+  color: #e9ecef
+ !important;
+  background-color: #3d4550 !important;
+  border: 0;
+  padding-left: 45px !important;
+}
+.list-mio-item:hover {
+  color: #e9ecef
+ !important;
+  background-color: #009595 !important;
+  text-decoration: none;
+}
+.list-group-item.active, .list-group-item-mio.active{
+  color: #e9ecef
+ !important;
+  background-color: #0b9ca7 !important;
+}
+.list-group-item.active:hover, .list-group-item-mio.active:hover{
+  color: #e9ecef
+ !important;
+  background-color: #23d7e4 !important;
+}
+.nav-link{
+  color:#e9ecef !important;
+  background-color: #495361 !important;
+  border-bottom: 2px solid #495361;
+}
+.nav-link:hover{
+  color:#e9ecef !important;
+  background-color: #556171 !important;
+  border-bottom: 2px solid #23d7e4;
+}
+.nav-link.active{
+  color: #e9ecef !important;
+  background-color: #009595 !important;
+  border-bottom: 1px solid #23d7e4;
+}
+.nav-link.disabled{
+  color: #acaeaf !important;
+  background-color: #556171 !important;
+  border-bottom: 1px solid #556171;
+}
+

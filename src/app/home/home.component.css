@@ -1,0 +1,57 @@
+#sidebar {
+    height: 100vh;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    background-color: #333942;
+    color: #ffffff;
+    transition: margin-left 0.3s;
+    overflow-y: auto;
+    max-height: 100vh;
+  }
+  #route {
+    height: 100%;
+    color: black;
+    transition: margin-left 0.3s;
+  }
+  #sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    margin-right: 5px;
+  }
+
+  #sidebar a:hover {
+    background-color: #495057;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #content {
+    margin-left: 250px;
+    padding: 15px;
+    transition: margin-left 0.3s;
+  }
+
+  .navbar-toggler-icon {
+    color: #ffffff;
+  }
+
+  @media (max-width: 767px) {
+    #sidebar {
+      margin-left: -250px;
+    }
+
+    #content {
+      margin-left: 0;
+    }
+
+    #sidebar.active {
+      margin-left: 0;
+    }
+  }

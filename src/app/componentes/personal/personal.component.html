@@ -1,0 +1,558 @@
+<main class="pt-3 pb-4 mx-1 px-4 bg-light">
+  <div class="row px-5 mb-2">
+    <div class="col col-lg-12 text-center">
+      <p class="h1 text-secondary"><strong>Personal</strong></p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="card col-md-12 mb-3 p-0">
+      <ul class="nav nav-fill justify-content-around align-items-center bg-naranja-principal" id="nav-tab" role="tablist" >
+        <li class="nav-item">
+          <a class="nav-link active justify-content-center" type="button" id="principal-tab" [class.active]="activeTab === 'principal'" (click)="activeTab = 'principal'" title="Principal">
+            <i class="fas fa-user mx-1 p-2"></i>
+            <div class="mt-2">INV</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link justify-content-center" type="button" id="prs-tab" [class.active]="activeTab === 'prs'" (click)="activeTab = 'prs'" title="PRS" >
+            <i class="fas fa-user mx-1 p-2"></i>
+            <div class="mt-2">PRS</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link justify-content-center" type="button" id="prs_pry-tab" [class.active]="activeTab === 'prs_pry'" (click)="activeTab = 'prs_pry'" title="PRS_PRY">
+            <i class="fas fa-user mx-1 p-2"></i>
+            <div class="mt-2">PRS_PRY</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link justify-content-center" type="button" id="acm_tcn-tab" [class.active]="activeTab === 'acm_tcn'" (click)="activeTab = 'acm_tcn'" title="ACM_TCN">
+            <i class="fas fa-user mx-1 p-2"></i>
+            <div class="mt-2">ACM_TCN</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link justify-content-center" type="button" id="prc_prf-tab" [class.active]="activeTab === 'prc_prf'" (click)="activeTab = 'prc_prf'" title="PRC_PRF">
+            <i class="fas fa-user mx-1 p-2"></i>
+            <div class="mt-2">PRC_PRF</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-body row align-items-center pt-3 pb-0">
+    <div class="col-md-12">
+        <form class="tab-content" id="dri_tra_vehiculoFormGroup-principal">
+
+          <!--TABS PRINCIPAL-->
+        <div class="tab-pane fade" [ngClass]="activeTab === 'principal'?'show active':''" id="principal">
+          <button class="btn btn-secondary text-white mb-3" (click)="abrirModalPrincipal()">Nuevo</button>
+
+          <table class="table table-bordered table-grey">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Cedula</th>
+                <th>Estado Civil</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Relacion Laboral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let principal of listaPrincipal">
+                <td>{{principal.nombres}}</td>
+                <td>{{principal.apellidos}}</td>
+                <td>{{principal.cedula}}</td>
+                <td>{{obtenerEstadoCivil(principal.estadoCivil)}}</td>
+                <td>{{principal.telefono}}</td>
+                <td>{{principal.direccion}}</td>
+                <td>{{principal.relacionLaboral}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+         <!-- Modal Nuevo -->
+        <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="nuevoModalLabel">Nuevo Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="formGroupPrincipal">
+                  <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <input type="text" class="form-control" id="nombres" formControlName="nombres" [ngClass]="validarEstado('nombres',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" formControlName="apellidos" [ngClass]="validarEstado('apellidos',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="cedula">Cedula</label>
+                    <input type="text" class="form-control" id="cedula" formControlName="cedula" [ngClass]="validarEstado('cedula',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="estadoCivil">Estado Civil</label>
+                    <select class="form-select" style="cursor: pointer;" id="estadoCivil" formControlName="estadoCivil" [ngClass]="validarEstado('estadoCivil',formGroupPrincipal)">
+                      <option [value]="null" disabled selected>Seleccione</option>
+                      <option value="S">Soltero</option>
+                      <option value="C">Casado</option>
+                      <option value="D">Divorciado</option>
+                      <option value="V">Viudo</option>
+                      <option value="U">Union Libre</option>
+                    </select>
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" formControlName="telefono" [ngClass]="validarEstado('telefono',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" formControlName="direccion" [ngClass]="validarEstado('direccion',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="relacionLaboral">Relacion Laboral</label>
+                    <input type="text" class="form-control" id="relacionLaboral" formControlName="relacionLaboral" [ngClass]="validarEstado('relacionLaboral',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                </form>
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="cerrarModalPrincipal()">Cerrar</button>
+                  <button type="button" class="btn btn-primary" (click)="guardarModalPrincipal()">Guardar</button>
+                </div>
+            </div>
+          </div>
+        </div>
+          <!--TABS PRS-->
+          <div class="tab-pane fade" [ngClass]="activeTab === 'prs'?'show active':''" id="prs">
+            <button class="btn btn-secondary text-white mb-3" (click)="abrirModalPRS()">Nuevo</button>
+
+          <table class="table table-bordered table-grey">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Cedula</th>
+                <th>Estado Civil</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Relacion Laboral</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let principal of listaPrincipal">
+                <td>{{principal.nombres}}</td>
+                <td>{{principal.apellidos}}</td>
+                <td>{{principal.cedula}}</td>
+                <td>{{obtenerEstadoCivil(principal.estadoCivil)}}</td>
+                <td>{{principal.telefono}}</td>
+                <td>{{principal.direccion}}</td>
+                <td>{{principal.relacionLaboral}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+         <!-- Modal Nuevo -->
+        <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="nuevoModalLabel">Nuevo Registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="formGroupPrincipal">
+                  <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <input type="text" class="form-control" id="nombres" formControlName="nombres" [ngClass]="validarEstado('nombres',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" formControlName="apellidos" [ngClass]="validarEstado('apellidos',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="cedula">Cedula</label>
+                    <input type="text" class="form-control" id="cedula" formControlName="cedula" [ngClass]="validarEstado('cedula',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="estadoCivil">Estado Civil</label>
+                    <select class="form-select" style="cursor: pointer;" id="estadoCivil" formControlName="estadoCivil" [ngClass]="validarEstado('estadoCivil',formGroupPrincipal)">
+                      <option [value]="null" disabled selected>Seleccione</option>
+                      <option value="S">Soltero</option>
+                      <option value="C">Casado</option>
+                      <option value="D">Divorciado</option>
+                      <option value="V">Viudo</option>
+                      <option value="U">Union Libre</option>
+                    </select>
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" formControlName="telefono" [ngClass]="validarEstado('telefono',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" id="direccion" formControlName="direccion" [ngClass]="validarEstado('direccion',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="relacionLaboral">Relacion Laboral</label>
+                    <input type="text" class="form-control" id="relacionLaboral" formControlName="relacionLaboral" [ngClass]="validarEstado('relacionLaboral',formGroupPrincipal)">
+                    <div class="invalid-feedback">Campo requerido*</div>
+                  </div>
+                </form>
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="cerrarModalPRS()">Cerrar</button>
+                  <button type="button" class="btn btn-primary" (click)="guardarModalPRS()">Guardar</button>
+                </div>
+            </div>
+          </div>
+          </div>
+
+          <!--TABS PRS_PRY-->
+          <div class="tab-pane fade" [ngClass]="activeTab === 'prs_pry'?'show active':''" id="prs_pry">
+            <div class="card-body row align-items-center justify-content-center">
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Nombres</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Apellidos</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Cedula</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRMA_CODIGO" class="col-md-3 col-form-label">Estado Civil</label>
+                      <div class="col-md-9">
+                        <select class="form-select" style="cursor: pointer;" id="DTRMA_CODIGO" >
+                          <option value="null" disabled selected>Seleccione</option>
+                          <option value="S">Soltero</option>
+                          <option value="C">Casado</option>
+                          <option value="D">Divorsiado</option>
+                          <option value="V">Viudo</option>
+                          <option value="U">Union Libre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_NUM_PLACA" class="col-md-3 col-form-label">Telefono</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_NUM_PLACA">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Direccion</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Relacion Laboral</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--TABS ACM_TCN-->
+          <div class="tab-pane fade" [ngClass]="activeTab === 'acm_tcn'?'show active':''" id="acm_tcn">
+            <div class="card-body row align-items-center justify-content-center">
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Nombres</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Apellidos</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Cedula</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRMA_CODIGO" class="col-md-3 col-form-label">Estado Civil</label>
+                      <div class="col-md-9">
+                        <select class="form-select" style="cursor: pointer;" id="DTRMA_CODIGO" >
+                          <option value="null" disabled selected>Seleccione</option>
+                          <option value="S">Soltero</option>
+                          <option value="C">Casado</option>
+                          <option value="D">Divorsiado</option>
+                          <option value="V">Viudo</option>
+                          <option value="U">Union Libre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_NUM_PLACA" class="col-md-3 col-form-label">Telefono</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_NUM_PLACA">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Direccion</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Relacion Laboral</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <!--TABS ACM_TCN-->
+           <div class="tab-pane fade" [ngClass]="activeTab === 'prc_prf'?'show active':''" id="prc_prf">
+            <div class="card-body row align-items-center justify-content-center">
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Nombres</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Apellidos</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="RESPONSABLE" class="col-lg-3 col-form-label my-1">Cedula</label>
+                      <div class="col-md-9" >
+                        <input type="text" class="form-control" id="RESPONSABLE">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRMA_CODIGO" class="col-md-3 col-form-label">Estado Civil</label>
+                      <div class="col-md-9">
+                        <select class="form-select" style="cursor: pointer;" id="DTRMA_CODIGO" >
+                          <option value="null" disabled selected>Seleccione</option>
+                          <option value="S">Soltero</option>
+                          <option value="C">Casado</option>
+                          <option value="D">Divorsiado</option>
+                          <option value="V">Viudo</option>
+                          <option value="U">Union Libre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 mb-2">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_NUM_PLACA" class="col-md-3 col-form-label">Telefono</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_NUM_PLACA">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Direccion</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group row align-items-center mb-3">
+                      <label for="DTRVE_MODELO" class="col-md-3 col-form-label">Relacion Laboral</label>
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" id="DTRVE_MODELO">
+                        <div class="invalid-feedback">
+                          El campo es requerido
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</main>
