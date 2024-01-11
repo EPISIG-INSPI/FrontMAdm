@@ -7,11 +7,11 @@
     width: 100%;
   }
 
-  .footer a {
+  .footer .list-inline-item a {
     color: #ffffff;
   }
 
-  .footer a:hover {
+  .footer .list-inline-item a:hover {
     color: #ffcc00;
   }
 

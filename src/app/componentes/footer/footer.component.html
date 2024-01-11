@@ -1,15 +1,31 @@
 <footer class="footer text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="list-inline social-icons mb-1">
-            <li class="list-inline-item"><a href="https://instagram.com/inspi_ecuador?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="https://www.facebook.com/investigacionensaludpublicaec" target="_blank"><i class="fab fa-facebook"></i></a></li>
-          </ul>
-        </div>
-        <div class="col-md-12">
-          <p class="mb-0">© 2023 INSPI-EPISIG</p>
+  <div class="row">
+    <div class="col-md-4 d-flex align-items-center justify-content-start ms-1">
+      <div class="btn-group dropup" *ngIf="usuario">
+        <button type="button"  class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          {{usuario.username}}
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-inline social-icons mb-1">
+              <li class="list-inline-item"><a href="https://instagram.com/inspi_ecuador?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.facebook.com/investigacionensaludpublicaec" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <p class="mb-0">© 2023 INSPI-EPISIG</p>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
+    <div class="col-md-4">
+    </div>
+  </div>
+</footer>

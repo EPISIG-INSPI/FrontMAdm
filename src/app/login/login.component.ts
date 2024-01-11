@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,10 @@ formLogin:FormGroup=new FormGroup({
 olvidarContra:boolean=false;
 
 
-constructor (private router:Router){}
+constructor (
+  private router:Router,
+  private loginService:LoginService
+  ){}
 
 showErrorMessage: boolean = false;
 
@@ -27,8 +31,9 @@ login(){
   this.formLogin.markAllAsTouched();
   if (this.formLogin.valid) {
     // Realizar la autenticación aquí
+    this.loginService.logIn(this.formLogin.value['email'],this.formLogin.value['pass'])
     console.log('Iniciar sesión');
-    this.router.navigate(['/home/personal']);
+    this.router.navigate(['/home/inicio']);
   } else {
     console.log('fallo');
     this.showErrorMessage = true;
