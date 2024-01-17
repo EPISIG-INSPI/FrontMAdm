@@ -11,10 +11,8 @@ declare var $: any;
 export class PersonalComponent {
   activeTab:string="principal"
   
-
   formGroupPrincipal:FormGroup = new PrincipalFormGroup().formGroup
   listaPrincipal:PrincipalModel[]=[]
-
 
   constructor(){
 
