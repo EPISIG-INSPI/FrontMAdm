@@ -20,6 +20,7 @@ import { OlvidarContraComponent } from './componentes/olvidar-contra/olvidar-con
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
 import { NgChartsModule } from 'ng2-charts';
+import { DashboardComponent } from './inicio/dashboard/dashboard.component';
 
 
 
@@ -31,7 +32,8 @@ import { NgChartsModule } from 'ng2-charts';
     LoginComponent,
     FooterComponent,
     OlvidarContraComponent,
-    InicioComponent
+    InicioComponent,
+    DashboardComponent
   ],
   imports: [
 		FormsModule,
