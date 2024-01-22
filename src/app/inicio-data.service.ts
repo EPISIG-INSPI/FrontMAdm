@@ -31,7 +31,7 @@ export class InicioDataService {
         },
         {
           label: 'materialGoods',
-          data: [65,23,65],
+          data: [65,23,66],
         },
       ]
 
