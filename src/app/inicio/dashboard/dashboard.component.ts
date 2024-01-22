@@ -1,29 +1,30 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { InicioDataService } from '../../inicio-data.service';
-import { Chart } from 'chart.js';
+import { ChartDataset, ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
-  @ViewChild('chartContainer') chartContainer!: ElementRef;
+export class DashboardComponent implements AfterViewInit {
 
-  publicationData: any = {};
+  public dataPubli:any;
+  public dataCient:any;
+  activeTabGen:string="publicaciones";
 
   constructor(private inicioDataService: InicioDataService) {}
-
-  ngOnInit(): void {
-    this.publicationData = this.inicioDataService.getPublicationData();
-  }
 
   ngAfterViewInit(): void {
     this.createDoughnutChart();
   }
 
   private createDoughnutChart(): void {
-    const ctx = (this.chartContainer.nativeElement as HTMLCanvasElement).getContext('2d');
+    this.dataPubli=this.inicioDataService.getPublicationData();
+    this.dataCient=this.inicioDataService.getCientificData();
+    // console.log(this.datasets);
+    
     //MI NUMERO CODIGO SACADO 
+
   }
 }

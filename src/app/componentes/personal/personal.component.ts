@@ -13,6 +13,7 @@ export class PersonalComponent {
   
   formGroupPrincipal:FormGroup = new PrincipalFormGroup().formGroup
   listaPrincipal:PrincipalModel[]=[]
+  listaPrs:PrincipalModel[]=[]
 
   constructor(){
 
@@ -46,13 +47,13 @@ export class PersonalComponent {
 
     abrirModalPRS(){
       this.formGroupPrincipal = new PrincipalFormGroup().formGroup
-      $("#nuevoModal").modal("show")
+      $("#modalPrs").modal("show")
     }
   
     guardarModalPRS(){
       this.formGroupPrincipal.markAllAsTouched()
       if (this.formGroupPrincipal.valid) {
-        this.listaPrincipal.push(this.formGroupPrincipal.value);
+        this.listaPrs.push(this.formGroupPrincipal.value);
         this.cerrarModalPRS()
       }else{
         Swal.fire({
@@ -64,7 +65,7 @@ export class PersonalComponent {
     }
 
     cerrarModalPRS(){
-      $("#nuevoModal").modal("hide");
+      $("#modalPrs").modal("hide");
       }
 
 
